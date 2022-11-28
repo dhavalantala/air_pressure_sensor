@@ -1,20 +1,17 @@
 from sensor.logger import logging
 from sensor.exception import SensorException
 import sys, os
+from sensor.utils import get_collection_as_dataframe
+from sensor.entity import config_entity 
+from sensor.components.data_ingestion import DataIngestion
 
-def test_logger_and_excepation():
-
-    try:
-        logging.info("Starting the test_logger_and_excepation")
-        result = 3/0
-        print(result)
-        logging.info("Stopping the test_logger_and_excepation")
-    except Exception as e:
-        logging.debug("Starting the test_logger_and_excepation")
-        raise SensorException(e, sys)
 
 if __name__ == "__main__":
     try:
-        test_logger_and_excepation()
+        training_pipeline_config = config_entity.TrainingPipelineConfig()
+        data_ingestion_config = config_entity.DataIngestionConfig(training_pipline_config=training_pipeline_config)
+        print(data_ingestion_config.to_dict())
+        data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config)
+        print(data_ingestion.initiate_data_ingestion())
     except Exception as e:
         print(e)

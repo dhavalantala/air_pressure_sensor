@@ -21,7 +21,7 @@ class DataValidation:
         try:
             logging.info(f"{'>>'*20} Data Validation {'<<'*20}")
             self.data_validation_config = data_validation_config
-            self.data_ingestion_artifact=data_ingestion_artifact
+            self.data_ingestion_artifact=data_ingestion_artifact 
             self.validation_error=dict()
         except Exception as e:
             raise SensorException(e, sys)
@@ -112,7 +112,6 @@ class DataValidation:
             base_df = pd.read_csv(self.data_validation_config.base_file_path)
             base_df.replace({"na":np.NAN},inplace=True)
             logging.info(f"Replace na value in base df")
-            #base_df has na as null
             logging.info(f"Drop null values colums from base df")
             base_df=self.drop_missing_values_columns(df=base_df,report_key_name="missing_values_within_base_dataset")
 
@@ -145,7 +144,7 @@ class DataValidation:
                 self.data_drift(base_df=base_df, current_df=test_df,report_key_name="data_drift_within_test_dataset")
 
             #write the report
-            logging.info("Write reprt in yaml file")
+            logging.info("Write report in yaml file")
             utils.write_yaml_file(file_path=self.data_validation_config.report_file_path,
             data=self.validation_error)
 

@@ -1,9 +1,9 @@
 import pymongo
 import pandas as pd
 import json
-
+from sensor.config import mongo_client
 # provide the mongoDb localhost url to connect python to mongoDB
-client = pymongo.MongoClient("mongodb+srv://mydatabase:RBLF6oCgx2tQ3veF@cluster0.cqvrdck.mongodb.net/?retryWrites=true&w=majority")
+# client = pymongo.MongoClient("mongodb+srv://mydatabase:RBLF6oCgx2tQ3veF@cluster0.cqvrdck.mongodb.net/?retryWrites=true&w=majority")
 
 
 # data file path
@@ -22,4 +22,4 @@ if __name__ == "__main__":
     # print(json_record[0])
 
     # insert converted json record to MongoDB 
-    client[DATABASE_NAME][COLLECTION_NAME].insert_many(json_record)
+    mongo_client[DATABASE_NAME][COLLECTION_NAME].insert_many(json_record)

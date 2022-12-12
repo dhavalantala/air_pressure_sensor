@@ -17,6 +17,8 @@ class ModelTrainer:
         except Exception as e:
             raise SensorException(e, sys)
 
+    
+    
     def train_model(self, x, y):
         try:
             xgb_clf = XGBClassifier()

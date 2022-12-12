@@ -8,6 +8,7 @@ artifact
 demotest.py
 logs
 artifacts
+prediction
 raw_data
 # Distribution / packaging
 .Python
@@ -135,3 +136,5 @@ dmypy.json
 /.DS_Store
 
 saved_models
+prediction
+
